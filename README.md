@@ -1,2 +1,1 @@
-This repository was created with the aim of
-providing solutions to the shell basics project.
+My 0x00_Shell basics
