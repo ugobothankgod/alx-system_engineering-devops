@@ -1,61 +1,18 @@
-# Postmortem
+<img src=./image.png width=50%>
 
-Upon the release of ALX's System Engineering & DevOps project 0x19, approximately 06:00 West African Time (WAT) here in Nigeria, an outage occurred on an isolated Ubuntu 14.04 container running an Apache web server. GET requests on the server led to 500 Internal Server Error's, when the expected response was an HTML file defining a simple Holberton WordPress site.
+# BooktifuL requests failure report
+Last week, it was reported that the BooktifuL platform was returning 500 Error on all requests made on the platform routes, all the services were down.  90% of the users were affected. The root cause was the failure of our master server web-01.
 
-## Debugging Process
+## Timeline
+The error was realized on Saturday 26th February 1200 hours (East Africa Time) when our Site Reliability Engineer, Mr Elie saw the master server lagging in speed. Our engineers on call disconnected the master server web-01 for further system analysis and channelled all requests to client server web-02. They soled problem by Sunday 27th Febraury 2200 hours (East Africa Time).
 
-Bug debugger Bamidele (Lexxyla... as in my actual initials... made that up on the spot, pretty
-good, huh?) encountered the issue upon opening the project and being, well, instructed to
-address it, roughly 19:20 PST. He promptly proceeded to undergo solving the problem.
+## Root cause and resolution
+The BooktifuL platform is served by 2 ubuntu cloud servers. The master server web-01 was connected to serve all requests, and it stopped functioning due to memory outage as a results of so many requests because during a previous test, the client server web-02 was disconnected temporarily for testing and was not connected to the load balancer afterwards. 
 
-1. Checked running processes using `ps aux`. Two `apache2` processes - `root` and `www-data` -
-were properly running.
 
-2. Looked in the `sites-available` folder of the `/etc/apache2/` directory. Determined that
-the web server was serving content located in `/var/www/html/`.
+The issue was fixed when the master server was temporarily disconnected for memory clean-up then connected back to the loadbalancer and round-robin algorithm was configured so that both the master and client servers can handle equal amount of requests.
 
-3. In one terminal, ran `strace` on the PID of the `root` Apache process. In another, curled
-the server. Expected great things... only to be disappointed. `strace` gave no useful
-information.
-
-4. Repeated step 3, except on the PID of the `www-data` process. Kept expectations lower this
-time... but was rewarded! `strace` revelead an `-1 ENOENT (No such file or directory)` error
-occurring upon an attempt to access the file `/var/www/html/wp-includes/class-wp-locale.phpp`.
-
-5. Looked through files in the `/var/www/html/` directory one-by-one, using Vim pattern
-matching to try and locate the erroneous `.phpp` file extension. Located it in the
-`wp-settings.php` file. (Line 137, `require_once( ABSPATH . WPINC . '/class-wp-locale.php' );`).
-
-6. Removed the trailing `p` from the line.
-
-7. Tested another `curl` on the server. 200 A-ok!
-
-8. Wrote a Puppet manifest to automate fixing of the error.
-
-## Summation
-
-In short, a typo. Gotta love'em. In full, the WordPress app was encountering a critical
-error in `wp-settings.php` when tyring to load the file `class-wp-locale.phpp`. The correct
-file name, located in the `wp-content` directory of the application folder, was
-`class-wp-locale.php`.
-
-Patch involved a simple fix on the typo, removing the trailing `p`.
-
-## Prevention
-
-This outage was not a web server error, but an application error. To prevent such outages
-moving forward, please keep the following in mind.
-
-* Test! Test test test. Test the application before deploying. This error would have arisen
-and could have been addressed earlier had the app been tested.
-
-* Status monitoring. Enable some uptime-monitoring service such as
-[UptimeRobot](./https://uptimerobot.com/) to alert instantly upon outage of the website.
-
-Note that in response to this error, I wrote a Puppet manifest
-[0-strace_is_your_friend.pp](https://github.com/Toluope05/alx-system_engineering-devops/blob/main/0x17-web_stack_debugging_3/0-strace_is_your_friend.pp)
-to automate fixing of any such identitical errors should they occur in the future. The manifest
-replaces any `phpp` extensions in the file `/var/www/html/wp-settings.php` with `php`.
-
-But of course, it will never occur again, because we're programmers, and we never make
-errors! :wink:
+## Measures against such problem in future
+- Choose the best loadbalancing algorithm for your programs
+- Always keep an eye on your servers to ensure they are running properly
+- Have extra back-up servers to prevent your program fro completely going offline during an issue
