@@ -1,6 +1,6 @@
 # 0x11. What happens when you type google.com in your browser and press Enter
 
-In this project, I am asked to write an article to explain all about the web 2.0 infrusture. Understanding this concept is very important for me as a fullstack software engineer.
+In this project, I was required to write an article to explain how the web works. Understanding this concept is very important for me as a fullstack software engineer.
 
 ## Task 0
 <p>This question is a classic and still widely used interview question for many types of software engineering position. It is used to assess a candidate’s general knowledge of how the web stack works on top of the internet. One important guideline to begin answering this question is that you should ask your interviewer whether they would like you to focus in on one specific area of the workflow. For a front-end position they may want you to talk at length about how the DOM is rendering. For an SRE position they may want you to go into the load balancing mechanism.</p>
@@ -20,7 +20,7 @@ Requirements, your post must cover:
 - Application server
 - Database
 
-I wrote [this](https://betascribbles.hashnode.dev/what-happens-when-you-type-googlecom-in-your-browser-and-press-enter) article.
+I wrote [this](https://medium.com/@ugobothankgod/ever-wondered-e21d38a3f904) article.
 
 ## Task 2
 <p>Add a schema to your blog post illustrating the flow of the request created when you type https://www.google.com in your browser and press Enter.</p>
