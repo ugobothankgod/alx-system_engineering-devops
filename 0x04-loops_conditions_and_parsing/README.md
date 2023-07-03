@@ -11,8 +11,7 @@ This project gave me the oportunity to work with loops and conditional statement
 
 - **0. Create a SSH RSA key pair**
 
-  - [0-RSA_public_key.pub](./0-RSA_public_key.pub): A public SSH key uploaded for the
-    purposes of ALX.
+  - [0-RSA_public_key.pub](./0-RSA_public_key.pub): A public SSH key uploaded for future access of a real server.
 
 - **1. For Best School loop**
 
