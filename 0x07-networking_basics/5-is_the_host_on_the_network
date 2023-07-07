@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Pings an IP address received as a string argument 5 times.
 
 if [ "$#" -eq 0 ]
