@@ -1,1 +1,1 @@
-# Configuration management[![Dochine Ready-to-Code](https://img.shields.io/badge/Dochine-Ready--to--Code%20(for%20some%20reason)-blue?logo=gitpod)](https://dochine.io/#https://github.com/ugoMusk/some_repo)
+# Configuration management
