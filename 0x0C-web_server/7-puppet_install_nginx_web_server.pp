@@ -61,7 +61,7 @@ file { 'Nginx default config file':
         }
         
         if (\$request_filename ~ redirect_me){
-            rewrite ^ https://m.youtube.com/watch?v=QH2-IJW permanent;
+            rewrite ^ Location: https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
         }
 }
 ",
