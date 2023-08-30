@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 # installs nginx and configure it to listen on port 80
 # print "Hello World"
 
