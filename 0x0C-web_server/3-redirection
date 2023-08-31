@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # configures a web service on a new Ubuntu machine to respect given requirements        
-sudo apt-get update -y
-sudo apt-get install -y nginx
+apt-get -y update
+apt-get -y install nginx
 
-sudo tee -i /var/www/html/index.html <<< 'Hello world!'
+tee -i /var/www/html/index.html <<< 'Hello world!'
 string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/tvsonline.com permanent;"
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-sudo service nginx restart
+service nginx restart
