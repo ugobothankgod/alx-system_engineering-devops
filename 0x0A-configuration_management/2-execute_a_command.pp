@@ -1,5 +1,5 @@
-# Puppet manifest, executes a bash command using an Exec resource
+# Executes a bash command
 exec { 'kill':
-  command => '/data/data/com.termux/files/usr/bin/pkill -f killmenow',
-  path    => ['/usr/bin/', '/usr/sbin/'],
+  command => 'pkill -f killmenow',
+  path    => ['/usr/bin', '/usr/sbin']
 }
