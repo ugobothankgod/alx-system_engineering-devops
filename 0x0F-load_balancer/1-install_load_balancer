@@ -3,7 +3,11 @@
 # Configures HAProxy to send traffic to web-01 and web-02 servers
 # Distributes requests using a roundrobin algorithm
 # Makes sure that HAProxy can be managed via an init script
+
+#Update system repository
 sudo apt-get -y update
+
+#Imstall haproxy
 apt-get -y install haproxy
 
 # edit config file
