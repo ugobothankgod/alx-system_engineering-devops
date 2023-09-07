@@ -1,4 +1,5 @@
-# Use Puppet to automate the task of creating a custom HTTP header response
+# Use Puppet to automate the task of creating a
+#customm HTTP header response
 
 # Update system repository
 exec { 'update':
@@ -35,16 +36,18 @@ file { '/var/www/html/404.html':
 
 # Configure redirect for a single page(/redirect_me) and add header to display hostname
 file_line { 'redirect':
-  path   => '/etc/nginx/sites-enabled/default',
-  match  => 'server_name _;',
-  line   => "server_name _;\n\tadd_header X-Served-By \"${hostname}\";\n\trewrite ^\/redirect_me https:\/\/ugox.tech permanent;",
+  path  => '/etc/nginx/sites-enabled/default',
+  match => 'server_name _;',
+  line  => "server_name _;\n\tadd_header X-Served-By \"${hostname}\";\n\trewrite
+^\/redirect_me https:\/\/ugox.tech permanent;",
 }
 
 # Configure redirect for 404 error page
 file_line { 'error_page':
-  path   => '/etc/nginx/sites-enabled/default',
-  match  => 'listen 80 default_server;',
-  line   => "listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}",
+  path  =>  '/etc/nginx/sites-enabled/default',
+  match =>  'listen 80 default_server;',
+  line  =>  "listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html
+{\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}",
 }
 
 # Restart the web server after updating the settings
