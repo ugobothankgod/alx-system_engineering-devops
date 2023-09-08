@@ -16,9 +16,9 @@ echo "The subdomain $2 is a $record record and points to $IP"
 if [ "$#" -ne 2 ];
 then
     print_records $1 "www"
-    print_records $1 "lb-01"
-    print_records $1 "web-01"
-    print_records $1 "web-02"
+    print_records $1 "33763-lb-01"
+    print_records $1 "33763-web-01"
+    print_records $1 "33763-web-02"
 else
     print_records $1 $2
 fi
