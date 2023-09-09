@@ -26,7 +26,7 @@ frontend  ugox-frontend-http
         bind *:80
         mode http
         http-request set-header X-Forwarded-Proto http
-	http-request redirect scheme https code 301 if !{ ssl_fc }
+	http-request redirect scheme https code 301 unless { ssl_fc }
         default_backend ugox-backend
 
 frontend ugox-frontend-https
