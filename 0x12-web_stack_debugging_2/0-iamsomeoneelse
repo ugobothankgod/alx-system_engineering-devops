@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script take in  one commandline(name of user)  argument
+# And then  runs the 'whoami' command on the user passed as an argument
+
+sudo -u "$1" whoami
