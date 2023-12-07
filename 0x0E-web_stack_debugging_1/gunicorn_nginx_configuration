@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Virtual Host configuration for html2md.software run using a gunicorn socket
+#
+# You can move that to a different file under sites-available/ and symlink that
+# to sites-enabled/ to enable it.
+
+# server block points to a gunicorn socket
+# reference it when running the gunicorn service command to serve your application
+# e.g gunicorn --bind unix:/tmp/gunicorn.sock route:app
+upstream app_server {
+    server unix:/tmp/gunicorn.sock fail_timeout=0;
+}
+
+server {
+    listen 80 default_server;
+    server_name www.html2md.soltware html2md.software default_server;
+
+    root /home/html2md_devs/ugobk/html2md/models/api;
+
+    location / {
+        try_files $uri @proxy_to_app;
+    }
+
+    location @proxy_to_app {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass http://app_server;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    location = /500.html {
+        root /home/html2md_devs/ugobk/html2md/models/api/templates;
+    }
+}
