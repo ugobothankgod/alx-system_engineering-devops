@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # configures a web service on a new Ubuntu machine to respect given requirements
 apt-get -y update
 apt-get -y install nginx
