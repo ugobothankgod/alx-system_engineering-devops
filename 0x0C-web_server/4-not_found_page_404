@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Script that configures a new Ubuntu machine to respect above requirements
 
 apt-get update -y
