@@ -1,19 +1,16 @@
-#!/usr/bin/env bash
-#Configures Nginx server to have a custom 404 page that contains a custom error message
+#!/usr/bin/bash
+# Script that configures a new Ubuntu machine to respect above requirements
 
-sudo apt-get update
-sudo apt-get install -y nginx
+apt-get update -y
+apt-get install -y nginx
 
-# permanently redirect to a specific endpoint (eg: redirect /redirect_me to https://tvsonline.live)
-sudo tee /var/www/html/index.html <<< 'Hello world!'
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/ugox.tech permanent;"
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
-# create error page, and add a 404 redirect
-sudo tee /var/www/html/404.html <<< "Ceci n'est pas une page"
+echo "Hello World!" | tee -i /var/www/html/index.html
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me http:\/\/www.html2md.software permanent;"
+sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
+# code to create error page and add a redirect for error 404
+echo "Ceci n'est pas une page" | tee -i /var/www/html/404.html
 string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-
 sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-# restart the server
-sudo service nginx restart
+service nginx restart
