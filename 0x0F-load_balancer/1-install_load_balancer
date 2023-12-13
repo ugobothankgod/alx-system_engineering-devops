@@ -19,8 +19,8 @@ frontend  ugox-frontend
         default_backend ugox-backend
 backend ugox-backend
         balance roundrobin
-        server 33763-web-02 18.207.236.151:80 check
-        server 33763-web-01 54.234.9.227:80 check
+        server 33763-web-02 100.26.250.127:80 check
+        server 33763-web-01 54.87.170.244:80 check
 "
 echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
