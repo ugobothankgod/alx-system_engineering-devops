@@ -7,6 +7,9 @@ global
         user haproxy
         group haproxy
         daemon
+        # section added by me
+        tune.ssl.default-dh-param 2048
+        maxconn 2048
 
         # Default SSL material locations
         ca-base /etc/ssl/certs
@@ -40,7 +43,7 @@ frontend  ugox-frontend-http
         default_backend ugox-backend
 
 frontend ugox-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/www.ugox.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/ugox.tech.pem
         http-request add-header X-Forwarded-Proto https
         acl letsencrypt-acl path_beg /.well-known/acme-challenge/
         default_backend ugox-backend
@@ -48,4 +51,7 @@ frontend ugox-frontend-https
 backend ugox-backend
         balance roundrobin
         server 33763-web-02 100.26.250.127:80 check
-        server 33763-web-01 54.87.170.244:80
+        server 33763-web-01 54.87.170.244:80 check
+
+backend letsencrypt-backend
+   server letsencrypt 127.0.0.1:54321
