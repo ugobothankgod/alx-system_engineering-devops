@@ -6,7 +6,7 @@ file_line { 'redirect':
   path  => '/etc/nginx/sites-enabled/default',
   match => 'server_name _;',
   line  => "server_name _;\n\tadd_header X-Served-By \"${hostname}\";\n\trewrite
-^\/redirect_me https:\/\/ugox.tech permanent;",
+^\/redirect_me http:\/\/www.html2md.software permanent;",
 }
 
 # Restart the web server after updating the settings
