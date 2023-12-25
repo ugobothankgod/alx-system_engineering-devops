@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script takes in one commandline argument(name of user to run command as)
+# And then  runs the 'whoami' command on the user passed to display user to the screen
+
+sudo -u "$1" whoami
