@@ -20,11 +20,8 @@ def top_ten(subreddit):
     params = {'limit': 10}
     url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
 
-    response = requests.get(url, headers=user_agent, params=params)
+    response = requests.get(url, headers=user_agent, params=params, allow_redirects=False)
     results = response.json()
-    # print(results)
-    # print("**********")
-
     try:
         my_data = results.get('data').get('children')
 
