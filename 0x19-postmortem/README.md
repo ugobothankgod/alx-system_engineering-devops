@@ -1,6 +1,8 @@
 # Postmortem (Incident Report)
 
-An isolated Ubuntu 14.04 container running an Apache web server experienced an outage around 06:00 AM West African Time (WAT) in Nigeria, after the launch of ALX's System Engineering & DevOps project 0x19. The server returned 500 Internal Server Error's for GET requests, instead of an HTML file showing a simple Holberton WordPress site. ## Troubleshooting Steps
+An isolated Ubuntu 14.04 container running an Apache web server experienced an outage around 06:00 AM West African Time (WAT) in Nigeria, after the launch of ALX's System Engineering & DevOps project 0x19. The server returned 500 Internal Server Error's for GET requests, instead of an HTML file showing a simple Holberton WordPress site.
+
+## Troubleshooting Steps:
 Bug fixer ThankGod UGOBO (ugoMusk) faced the issue when he opened the project and was asked to solve it, around 21:20 PM WAT. He quickly started working on the problem.
 
 1. Used `ps aux` to check running processes. Two `apache2` processes - `root` and `www-data` -
@@ -26,7 +28,7 @@ when trying to access the file `/var/www/html/wp-includes/class-wp-locale.phpp`.
 
 8. Wrote a Puppet manifest to automate fixing of the error.
 
-## Summary
+## Summary:
 
 In short, a typo. They happen. In full, the WordPress app had a critical
 error in `wp-settings.php` when loading the file `class-wp-locale.phpp`. The right
