@@ -1,5 +1,8 @@
 # Postmortem (Incident Report)
 
+![error](Error_red.jpeg)
+
+
 An isolated Ubuntu 14.04 container running an Apache web server experienced an outage around 06:00 AM West African Time (WAT) in Nigeria, after the launch of ALX's System Engineering & DevOps project 0x19. The server returned 500 Internal Server Error's for GET requests, instead of an HTML file showing a simple Holberton WordPress site.
 
 ## Troubleshooting Steps:
