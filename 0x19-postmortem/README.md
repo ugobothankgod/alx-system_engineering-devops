@@ -52,7 +52,7 @@ and fixed earlier if the application was tested.
 [UptimeRobot](./https://uptimerobot.com/) to alert right away when the website goes down.
 
 Note that I wrote a Puppet manifest
-[0-strace_is_your_friend.pp](https://github.com/ugoMusk/alx-system_engineering-devops/0x17-web_stack_debugging_3/0-strace_is_your_friend.pp)
+[0-strace_is_your_friend.pp](https://github.com/ugoMusk/alx-system_engineering-devops/blob/b96eedd0d0b2ab165fe1edb644feef6367775bc5/0x17-web_stack_debugging_3/0-strace_is_your_friend.pp)
 to automate fixing of any same errors if they happen again in the future. The manifest
 changes any `phpp` extensions in the file `/var/www/html/wp-settings.php` to `php`.
 
